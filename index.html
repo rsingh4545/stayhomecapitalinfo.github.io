@@ -1,123 +1,246 @@
-<!-- SIMPLE NAVBAR TO JUMP TO EACH FORM -->
-<nav style="position:sticky; top:0; background:#0b1120; padding:12px 20px; z-index:100; display:flex; justify-content:center; gap:20px;">
-  <a href="#homeowner-form" style="color:#e5e7eb; text-decoration:none; font-weight:500;">Homeowner Apply</a>
-  <a href="#investor-form" style="color:#e5e7eb; text-decoration:none; font-weight:500;">Investor</a>
-  <a href="#broker-form" style="color:#e5e7eb; text-decoration:none; font-weight:500;">Broker</a>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StayHome Capital</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a;
+      color: #0f172a;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #0b1120;
+      padding: 12px 20px;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      border-bottom: 1px solid #111827;
+    }
+    nav a {
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    nav a:hover {
+      color: #cbd5e1;
+    }
+    section {
+      padding: 40px;
+      max-width: 650px;
+      margin: 40px auto;
+      background: #f9fafb;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 15px 50px rgba(15, 23, 42, 0.08);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #0b1120;
+      letter-spacing: -0.02em;
+    }
+    p {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #334155;
+      line-height: 1.6;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: 600;
+      color: #0f172a;
+    }
+    input, select, textarea {
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      background: white;
+      color: #0f172a;
+    }
+    button {
+      padding: 12px;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .status {
+      min-height: 18px;
+      font-size: 14px;
+      color: #b91c1c;
+    }
+  </style>
+</head>
+<body>
+  <!-- SIMPLE NAVBAR TO JUMP TO EACH FORM -->
+  <nav>
+    <a href="#homeowner-form">Homeowner Apply</a>
+    <a href="#investor-form">Investor</a>
+    <a href="#broker-form">Broker</a>
+  </nav>
 
-<!-- HOMEOWNER APPLICATION FORM -->
-<section id="homeowner-form" style="padding: 40px; max-width: 600px; margin: 40px auto; background:#f9fafb; border-radius:10px; border:1px solid #e5e7eb;">
-  <h2 style="text-align:center; margin-bottom:10px;">Homeowner Application</h2>
-  <p style="text-align:center; margin-bottom:20px;">
-    Apply to see if you qualify for mortgage payment support.
-  </p>
+  <!-- HOMEOWNER APPLICATION FORM -->
+  <section id="homeowner-form">
+    <h2>Homeowner Application</h2>
+    <p>
+      Apply to see if you qualify for mortgage payment support.
+    </p>
 
-  <form action="https://formspree.io/f/xanrjvoa" method="POST" style="display:flex; flex-direction:column; gap:15px;">
-    <!-- redirect to thankyou page after submit -->
-    <input type="hidden" name="_redirect" value="https://stayhomecapital.com/thankyou.html">
+    <form action="https://formspree.io/f/xanrjvoa" method="POST" data-formspree data-redirect="thankyou.html">
+      <label>Full Name</label>
+      <input type="text" name="name" required>
 
-    <label>Full Name</label>
-    <input type="text" name="name" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Email Address</label>
+      <input type="email" name="email" required>
 
-    <label>Email Address</label>
-    <input type="email" name="email" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Phone Number</label>
+      <input type="text" name="phone" required>
 
-    <label>Phone Number</label>
-    <input type="text" name="phone" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Property Address</label>
+      <input type="text" name="address" required>
 
-    <label>Property Address</label>
-    <input type="text" name="address" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Current Mortgage Lender</label>
+      <input type="text" name="lender">
 
-    <label>Current Mortgage Lender</label>
-    <input type="text" name="lender" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Monthly Mortgage Payment</label>
+      <input type="text" name="payment">
 
-    <label>Monthly Mortgage Payment</label>
-    <input type="text" name="payment" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>How many months behind?</label>
+      <input type="text" name="arrears">
 
-    <label>How many months behind?</label>
-    <input type="text" name="arrears" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Reason for Assistance</label>
+      <textarea name="reason" rows="4"></textarea>
 
-    <label>Reason for Assistance</label>
-    <textarea name="reason" rows="4" style="padding:10px; border:1px solid #ccc; border-radius:6px;"></textarea>
+      <div class="status" aria-live="polite"></div>
+      <button type="submit" data-default-text="Submit Application" style="background:#1a73e8;">Submit Application</button>
+    </form>
+  </section>
 
-    <button type="submit" style="padding:12px; background:#1a73e8; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">
-      Submit Application
-    </button>
-  </form>
-</section>
+  <!-- INVESTOR INQUIRY FORM -->
+  <section id="investor-form">
+    <h2>Investor Inquiry</h2>
+    <p>
+      Join the investor waitlist for Canada’s Home-Rescue Equity Fund.
+    </p>
 
-<!-- INVESTOR INQUIRY FORM -->
-<section id="investor-form" style="padding: 40px; max-width: 600px; margin: 40px auto; background:#f9fafb; border-radius:10px; border:1px solid #e5e7eb;">
-  <h2 style="text-align:center; margin-bottom:10px;">Investor Inquiry</h2>
-  <p style="text-align:center; margin-bottom:20px;">
-    Join the investor waitlist for Canada’s Home-Rescue Equity Fund.
-  </p>
+    <form action="https://formspree.io/f/mjknrlwa" method="POST" data-formspree data-redirect="thankyou.html">
+      <label>Full Name</label>
+      <input type="text" name="name" required>
 
-  <form action="https://formspree.io/f/mjknrlwa" method="POST" style="display:flex; flex-direction:column; gap:15px;">
-    <!-- redirect to thankyou page after submit -->
-    <input type="hidden" name="_redirect" value="https://stayhomecapital.com/thankyou.html">
+      <label>Email Address</label>
+      <input type="email" name="email" required>
 
-    <label>Full Name</label>
-    <input type="text" name="name" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Phone Number (optional)</label>
+      <input type="text" name="phone">
 
-    <label>Email Address</label>
-    <input type="email" name="email" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Investment Range</label>
+      <select name="investment_range">
+        <option value="10-25k">$10,000 – $25,000</option>
+        <option value="25-50k">$25,000 – $50,000</option>
+        <option value="50-100k">$50,000 – $100,000</option>
+        <option value="100k+">$100,000+</option>
+      </select>
 
-    <label>Phone Number (optional)</label>
-    <input type="text" name="phone" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Preferred Return Type</label>
+      <select name="return_type">
+        <option value="fixed">8–12% Fixed Annual Return</option>
+        <option value="equity">Home Appreciation Share</option>
+        <option value="not_sure">Not sure yet</option>
+      </select>
 
-    <label>Investment Range</label>
-    <select name="investment_range" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
-      <option value="10-25k">$10,000 – $25,000</option>
-      <option value="25-50k">$25,000 – $50,000</option>
-      <option value="50-100k">$50,000 – $100,000</option>
-      <option value="100k+">$100,000+</option>
-    </select>
+      <label>Anything else we should know?</label>
+      <textarea name="notes" rows="4"></textarea>
 
-    <label>Preferred Return Type</label>
-    <select name="return_type" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
-      <option value="fixed">8–12% Fixed Annual Return</option>
-      <option value="equity">Home Appreciation Share</option>
-      <option value="not_sure">Not sure yet</option>
-    </select>
+      <div class="status" aria-live="polite"></div>
+      <button type="submit" data-default-text="Join Investor Waitlist" style="background:#16a34a;">Join Investor Waitlist</button>
+    </form>
+  </section>
 
-    <label>Anything else we should know?</label>
-    <textarea name="notes" rows="4" style="padding:10px; border:1px solid #ccc; border-radius:6px;"></textarea>
+  <!-- MORTGAGE BROKER PARTNERSHIP FORM -->
+  <section id="broker-form">
+    <h2>Broker Partnership Form</h2>
+    <p>
+      Partner with StayHome Capital to help clients in mortgage distress.
+    </p>
 
-    <button type="submit" style="padding:12px; background:#16a34a; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">
-      Join Investor Waitlist
-    </button>
-  </form>
-</section>
+    <form action="https://formspree.io/f/mvgvonbj" method="POST" data-formspree data-redirect="thankyou.html">
+      <label>Broker Name</label>
+      <input type="text" name="name" required>
 
-<!-- MORTGAGE BROKER PARTNERSHIP FORM -->
-<section id="broker-form" style="padding: 40px; max-width: 600px; margin: 40px auto; background:#f9fafb; border-radius:10px; border:1px solid #e5e7eb;">
-  <h2 style="text-align:center; margin-bottom:10px;">Broker Partnership Form</h2>
-  <p style="text-align:center; margin-bottom:20px;">
-    Partner with StayHome Capital to help clients in mortgage distress.
-  </p>
+      <label>Brokerage Name</label>
+      <input type="text" name="brokerage">
 
-  <form action="https://formspree.io/f/mvgvonbj" method="POST" style="display:flex; flex-direction:column; gap:15px;">
-    <!-- redirect to thankyou page after submit -->
-    <input type="hidden" name="_redirect" value="https://stayhomecapital.com/thankyou.html">
+      <label>Email Address</label>
+      <input type="email" name="email" required>
 
-    <label>Broker Name</label>
-    <input type="text" name="name" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Phone Number</label>
+      <input type="text" name="phone">
 
-    <label>Brokerage Name</label>
-    <input type="text" name="brokerage" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <label>Client Situation (short summary)</label>
+      <textarea name="client_details" rows="4"></textarea>
 
-    <label>Email Address</label>
-    <input type="email" name="email" required style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+      <div class="status" aria-live="polite"></div>
+      <button type="submit" data-default-text="Submit Referral" style="background:#f59e0b;">Submit Referral</button>
+    </form>
+  </section>
 
-    <label>Phone Number</label>
-    <input type="text" name="phone" style="padding:10px; border:1px solid #ccc; border-radius:6px;">
+  <script>
+    // Submit forms through Formspree with helpful error messaging and a reliable redirect
+    document.addEventListener('DOMContentLoaded', () => {
+      const forms = document.querySelectorAll('form[data-formspree]');
 
-    <label>Client Situation (short summary)</label>
-    <textarea name="client_details" rows="4" style="padding:10px; border:1px solid #ccc; border-radius:6px;"></textarea>
+      forms.forEach((form) => {
+        form.addEventListener('submit', async (event) => {
+          event.preventDefault();
 
-    <button type="submit" style="padding:12px; background:#f59e0b; color:white; border:none; border-radius:6px; cursor:pointer; font-weight:600;">
-      Submit Referral
-    </button>
-  </form>
-</section>
+          const statusEl = form.querySelector('.status');
+          const submitButton = form.querySelector('button[type="submit"]');
+          const redirectTarget = form.dataset.redirect || 'thankyou.html';
+
+          statusEl.textContent = '';
+          submitButton.disabled = true;
+          submitButton.textContent = 'Submitting...';
+
+          try {
+            const response = await fetch(form.action, {
+              method: 'POST',
+              body: new FormData(form),
+              headers: { 'Accept': 'application/json' },
+            });
+
+            if (response.ok) {
+              form.reset();
+              window.location.href = redirectTarget;
+              return;
+            }
+
+            const data = await response.json().catch(() => ({}));
+            const message = data?.error || 'There was a problem submitting the form. Please try again or email hello@stayhomecapital.com.';
+            statusEl.textContent = message;
+          } catch (error) {
+            statusEl.textContent = 'Unable to submit right now. Please check your internet connection or email hello@stayhomecapital.com.';
+          } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = submitButton.dataset.defaultText || submitButton.textContent.replace('Submitting...', '').trim() || 'Submit';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
