@@ -102,6 +102,7 @@
     </p>
 
     <form action="https://formspree.io/f/xanrjvoa" method="POST" data-formspree data-redirect="thankyou.html">
+      <input type="hidden" name="_redirect" value="thankyou.html">
       <label>Full Name</label>
       <input type="text" name="name" required>
 
@@ -139,6 +140,7 @@
     </p>
 
     <form action="https://formspree.io/f/mjknrlwa" method="POST" data-formspree data-redirect="thankyou.html">
+      <input type="hidden" name="_redirect" value="thankyou.html">
       <label>Full Name</label>
       <input type="text" name="name" required>
 
@@ -179,6 +181,7 @@
     </p>
 
     <form action="https://formspree.io/f/mvgvonbj" method="POST" data-formspree data-redirect="thankyou.html">
+      <input type="hidden" name="_redirect" value="thankyou.html">
       <label>Broker Name</label>
       <input type="text" name="name" required>
 
@@ -230,7 +233,10 @@
             }
 
             const data = await response.json().catch(() => ({}));
-            const message = data?.error || 'There was a problem submitting the form. Please try again or email hello@stayhomecapital.com.';
+            const errors = Array.isArray(data?.errors)
+              ? data.errors.map((err) => err.message).join(' ')
+              : null;
+            const message = errors || data?.error || 'There was a problem submitting the form. Please try again or email hello@stayhomecapital.com.';
             statusEl.textContent = message;
           } catch (error) {
             statusEl.textContent = 'Unable to submit right now. Please check your internet connection or email hello@stayhomecapital.com.';
