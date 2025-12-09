@@ -1,260 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>StayHome Capital</title>
+
   <style>
-    :root {
-      --brand: #1d4ed8;
-      --text: #0f172a;
-      --muted: #334155;
-      --card: #f8fafc;
-      --border: #e2e8f0;
-      --shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    :root{
+      --brand:#1d4ed8;
+      --text:#0b1220;
+      --muted:#4b5563;
+      --card:#ffffff;
+      --bg:#0f172a;
+      --border:#e6eef9;
+      --shadow:0 18px 50px rgba(15,23,42,0.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
+      background:radial-gradient(circle at 20% 20%, rgba(59,130,246,0.06),transparent 30%),
+                 radial-gradient(circle at 80% 10%, rgba(16,185,129,0.04),transparent 30%),
+                 var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
     }
 
-    * {
-      box-sizing: border-box;
+    /* NAV */
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(6,10,20,0.9);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid rgba(255,255,255,0.03);
     }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: radial-gradient(
-          circle at 20% 20%,
-          rgba(59, 130, 246, 0.08),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 80% 10%,
-          rgba(16, 185, 129, 0.08),
-          transparent 30%
-        ),
-        #0f172a;
-      color: var(--text);
-      min-height: 100vh;
+    .navbar__content{
+      max-width:1100px;
+      margin:0 auto;
+      padding:12px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
-
-    a {
-      color: var(--brand);
+    .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#e6eef9;font-weight:700}
+    .brand .logo{height:36px;width:auto;display:block}
+    .nav-links{display:flex;gap:12px;align-items:center}
+    .nav-links a{
+      color:#e6eef9;text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px;
     }
+    .nav-links a:hover{background:rgba(255,255,255,0.04)}
 
-    .navbar {
-      position: sticky;
-      top: 0;
-      background: rgba(11, 17, 32, 0.9);
-      backdrop-filter: blur(10px);
-      padding: 12px 20px;
-      z-index: 100;
-      border-bottom: 1px solid #111827;
+    /* Header hero */
+    header{max-width:1100px;margin:18px auto 6px;padding:28px 20px;color:#e6eef9}
+    .eyebrow{display:inline-block;padding:6px 12px;background:rgba(255,255,255,0.04);border-radius:999px;font-size:13px;margin-bottom:12px}
+    .hero-title{font-size:clamp(26px,4vw,34px);margin:6px 0 8px;line-height:1.05}
+    .hero-sub{max-width:760px;color:#cbd5e1;margin:0 0 18px;line-height:1.6}
+
+    .hero-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:8px}
+    .hero-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);padding:12px;border-radius:10px;color:#f8fafc}
+
+    /* Sections */
+    main{padding:18px 20px 60px}
+    .section-wrapper{
+      max-width:760px;margin:28px auto;background:var(--card);border-radius:12px;border:1px solid var(--border);box-shadow:var(--shadow);padding:30px;
     }
-
-    .navbar__content {
-      max-width: 1050px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      flex-wrap: wrap;
-      justify-content: space-between;
+    .section-wrapper h2{margin:0 0 8px;text-align:center}
+    .section-wrapper p{margin:0 0 18px;text-align:center;color:var(--muted)}
+    form{display:flex;flex-direction:column;gap:12px}
+    label{font-weight:700;color:var(--text);font-size:14px}
+    input,select,textarea{
+      padding:12px;border-radius:10px;border:1px solid var(--border);font-size:15px;background:#fff;color:var(--text);font-family:inherit;
     }
-
-    .brand {
-      color: #e5e7eb;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      text-decoration: none;
+    input:focus,select:focus,textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px rgba(59,130,246,0.08)}
+    .btn{
+      padding:12px 14px;border-radius:10px;border:none;color:#fff;font-weight:800;cursor:pointer;font-size:15px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
     }
+    .btn:disabled{opacity:0.7;cursor:not-allowed}
+    .btn-primary{background:#1a73e8}
+    .btn-green{background:#16a34a}
+    .btn-gold{background:#f59e0b}
 
-    .nav-links {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
+    .contact-hint{margin-top:8px;text-align:center;color:#6b7280}
 
-    .nav-links a {
-      color: #e5e7eb;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      padding: 6px 10px;
-      border-radius: 8px;
-      transition: background 0.2s ease, color 0.2s ease;
-    }
-
-    .nav-links a:hover {
-      background: rgba(255, 255, 255, 0.06);
-      color: #f8fafc;
-    }
-
-    header {
-      max-width: 1050px;
-      margin: 0 auto;
-      padding: 42px 28px 20px;
-      color: #e5e7eb;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      font-size: 13px;
-      letter-spacing: 0.01em;
-      margin-bottom: 14px;
-    }
-
-    .hero-title {
-      font-size: clamp(28px, 4vw, 34px);
-      margin: 0 0 10px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-subtitle {
-      max-width: 750px;
-      line-height: 1.6;
-      margin: 0 0 18px;
-      color: #cbd5e1;
-      font-size: 16px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
-      margin: 18px 0 8px;
-    }
-
-    .hero-card {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: #f8fafc;
-      padding: 14px;
-      border-radius: 12px;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      line-height: 1.45;
-    }
-
-    .contact-hint {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      color: #cbd5e1;
-      font-size: 14px;
-      margin-top: 6px;
-    }
-
-    .contact-hint a {
-      color: #a5b4fc;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    main {
-      padding: 24px 20px 40px;
-    }
-
-    .section-wrapper {
-      max-width: 720px;
-      margin: 0 auto 32px;
-      background: var(--card);
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 34px 30px;
-    }
-
-    .section-wrapper h2 {
-      text-align: center;
-      margin: 0 0 12px;
-      color: var(--text);
-      letter-spacing: -0.02em;
-    }
-
-    .section-wrapper p {
-      text-align: center;
-      margin: 0 0 22px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    label {
-      font-weight: 700;
-      color: var(--text);
-      font-size: 15px;
-    }
-
-    input,
-    select,
-    textarea {
-      padding: 12px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 15px;
-      font-family: inherit;
-      background: white;
-      color: var(--text);
-      transition: border 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: var(--brand);
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
-    }
-
-    button[type="submit"] {
-      padding: 12px;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 800;
-      font-size: 15px;
-      transition: transform 0.1s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
-
-    button[type="submit"]:hover {
-      transform: translateY(-1px);
-    }
-
-    button[type="submit"]:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    @media (max-width: 640px) {
-      .section-wrapper {
-        padding: 28px 24px;
-      }
+    @media (max-width:640px){
+      .navbar__content{padding:12px}
+      header{padding:18px 16px}
+      .section-wrapper{padding:20px}
     }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
   <nav class="navbar">
     <div class="navbar__content">
-      <a class="brand" href="#top">StayHome Capital</a>
-      <div class="nav-links" aria-label="Jump to form">
+      <a class="brand" href="#top">
+        <img class="logo" src="logo.png" alt="StayHome Capital logo" />
+        <span>StayHome Capital</span>
+      </a>
+
+      <div class="nav-links" role="navigation" aria-label="Jump to forms">
         <a href="#homeowner-form">Homeowner Apply</a>
         <a href="#investor-form">Investor</a>
         <a href="#broker-form">Broker</a>
@@ -262,77 +113,73 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <header id="top">
     <div class="eyebrow">Canada’s home-rescue equity partner</div>
     <h1 class="hero-title">Mortgage relief, home protection, and steady investor opportunities.</h1>
-    <p class="hero-subtitle">
-      StayHome Capital helps homeowners avoid foreclosure, connects investors with resilient returns, and
-      partners with mortgage brokers to solve urgent payment challenges.
-    </p>
+    <p class="hero-sub">StayHome Capital helps homeowners avoid foreclosure, connects investors with resilient returns, and partners with mortgage brokers to solve urgent payment challenges.</p>
+
     <div class="hero-grid">
       <div class="hero-card">🏠 Tailored support for past-due mortgages and lender workouts.</div>
       <div class="hero-card">📈 Investor allocations with fixed returns or shared appreciation.</div>
-      <div class="hero-card">🤝 Clear handoffs for brokers managing distressed client files.</div>
+      <div class="hero-card">🤝 Clear handoffs for brokers and mortgage professionals.</div>
     </div>
-    <div class="contact-hint">
-      Prefer to email? Reach us at
-      <a href="mailto:stayhomecapital.info@gmail.com">stayhomecapital.info@gmail.com</a>.
-    </div>
+
+    <div class="contact-hint">Prefer email? <a href="mailto:stayhomecapital.info@gmail.com">stayhomecapital.info@gmail.com</a></div>
   </header>
 
+  <!-- FORMS -->
   <main>
-    <!-- HOMEOWNER FORM -->
+    <!-- Homeowner -->
     <section id="homeowner-form" class="section-wrapper">
       <h2>Homeowner Application</h2>
       <p>Apply to see if you qualify for mortgage payment support.</p>
 
       <form action="https://formspree.io/f/xanrjvoa" method="POST">
         <input type="hidden" name="_redirect" value="https://stayhomecapital.com/thankyou.html" />
-
         <label>Full Name</label>
-        <input type="text" name="name" required />
+        <input name="name" type="text" required />
 
         <label>Email Address</label>
-        <input type="email" name="email" required />
+        <input name="email" type="email" required />
 
         <label>Phone Number</label>
-        <input type="text" name="phone" required />
+        <input name="phone" type="text" required />
 
         <label>Property Address</label>
-        <input type="text" name="address" required />
+        <input name="address" type="text" required />
 
         <label>Current Mortgage Lender</label>
-        <input type="text" name="lender" />
+        <input name="lender" type="text" />
 
         <label>Monthly Mortgage Payment</label>
-        <input type="text" name="payment" />
+        <input name="payment" type="text" />
 
         <label>How many months behind?</label>
-        <input type="text" name="arrears" />
+        <input name="arrears" type="text" />
 
         <label>Reason for Assistance</label>
         <textarea name="reason" rows="4"></textarea>
 
-        <button type="submit" style="background:#1a73e8;">Submit Application</button>
+        <button class="btn btn-primary" type="submit">Submit Application</button>
       </form>
     </section>
 
-    <!-- INVESTOR FORM -->
+    <!-- Investor -->
     <section id="investor-form" class="section-wrapper">
       <h2>Investor Inquiry</h2>
       <p>Join the investor waitlist for Canada’s Home-Rescue Equity Fund.</p>
 
       <form action="https://formspree.io/f/mjknrlwa" method="POST">
         <input type="hidden" name="_redirect" value="https://stayhomecapital.com/thankyou.html" />
-
         <label>Full Name</label>
-        <input type="text" name="name" required />
+        <input name="name" type="text" required />
 
         <label>Email Address</label>
-        <input type="email" name="email" required />
+        <input name="email" type="email" required />
 
         <label>Phone Number (optional)</label>
-        <input type="text" name="phone" />
+        <input name="phone" type="text" />
 
         <label>Investment Range</label>
         <select name="investment_range">
@@ -352,36 +199,36 @@
         <label>Anything else we should know?</label>
         <textarea name="notes" rows="4"></textarea>
 
-        <button type="submit" style="background:#16a34a;">Join Investor Waitlist</button>
+        <button class="btn btn-green" type="submit">Join Investor Waitlist</button>
       </form>
     </section>
 
-    <!-- BROKER FORM -->
+    <!-- Broker -->
     <section id="broker-form" class="section-wrapper">
       <h2>Broker Partnership Form</h2>
       <p>Partner with StayHome Capital to help clients in mortgage distress.</p>
 
       <form action="https://formspree.io/f/mvgvonbj" method="POST">
         <input type="hidden" name="_redirect" value="https://stayhomecapital.com/thankyou.html" />
-
         <label>Broker Name</label>
-        <input type="text" name="name" required />
+        <input name="name" type="text" required />
 
         <label>Brokerage Name</label>
-        <input type="text" name="brokerage" />
+        <input name="brokerage" type="text" />
 
         <label>Email Address</label>
-        <input type="email" name="email" required />
+        <input name="email" type="email" required />
 
         <label>Phone Number</label>
-        <input type="text" name="phone" />
+        <input name="phone" type="text" />
 
         <label>Client Situation (short summary)</label>
         <textarea name="client_details" rows="4"></textarea>
 
-        <button type="submit" style="background:#f59e0b;">Submit Referral</button>
+        <button class="btn btn-gold" type="submit">Submit Referral</button>
       </form>
     </section>
   </main>
+
 </body>
 </html>
